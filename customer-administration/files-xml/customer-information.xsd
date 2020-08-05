@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema"
-	targetNamespace="http://bbnsdevelop.com.br"
-	xmlns:tns="http://bbnsdevelop.com.br"
-	elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+						targetNamespace="http://bbnsdevelop.com.br"
+						xmlns:tns="http://bbnsdevelop.com.br"
+						elementFormDefault="qualified">
 	
-	<element name="GetCustomerDetailsRequest">
-		<complexType>
-			<sequence>
-				<element name="id" type="integer"></element>
-			</sequence>
-		</complexType>
-	</element>
+	<xs:element name="GetCustomerDetailsRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id" type="xs:integer"></xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
 	
-	<element name="GetCustomerDetailsResponse">
-		<complexType>
-			<sequence>
-				<element name="CustomerDetail" type="tns:CustomerDetail"></element>
-			</sequence>
-		</complexType>
-	</element>
+	<xs:element name="GetCustomerDetailsResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="CustomerDetail" type="tns:CustomerDetail"></xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
 	
-	<element name="GetAllCustomerDetailsResponse">
-		<complexType>
-			<sequence>
-				<element name="CustomerDetail" type="tns:CustomerDetail"></element>
-			</sequence>
-		</complexType>
-	</element>
+	<xs:element name="GetAllCustomerDetailsResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="CustomerDetail" type="tns:CustomerDetail"></xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
 	
-	<complexType name="CustomerDetail">
-			<sequence>
-				<element name="id" type="integer"></element>
-				<element name="name" type="string"></element>
-				<element name="phone" type="string"></element>
-				<element name="email" type="string"></element>
-			</sequence>
-	</complexType>
+	<xs:complexType name="CustomerDetail">
+			<xs:sequence>
+				<xs:element name="id" type="xs:integer"></xs:element>
+				<xs:element name="name" type="xs:string"></xs:element>
+				<xs:element name="phone" type="xs:string"></xs:element>
+				<xs:element name="email" type="xs:string"></xs:element>
+			</xs:sequence>
+	</xs:complexType>
 
 
-</schema>
+</xs:schema>
