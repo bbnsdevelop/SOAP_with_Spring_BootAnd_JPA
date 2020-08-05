@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GetCustomerDetailsResponse xmlns="http://bbnsdevelop.com.br">
-	<CustomerDetail>
-		<id>123</id>
-		<name>bob</name>
-		<phone>99999999</phone>
-		<email>bob@hotmail.com</email>
-	</CustomerDetail>
-</GetCustomerDetailsResponse>
+<GetCustomerDetailsRequest	xmlns="http://bbnsdevelop.com.br"
+							xsi:schemaLocation="http://bbnsdevelop.com.br customer-information.xsd"
+							xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<id>123</id>
+</GetCustomerDetailsRequest>

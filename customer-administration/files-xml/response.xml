@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GetCustomerDetailsRequest xmlns="http://bbnsdevelop.com.br">
-	<id>123</id>
-</GetCustomerDetailsRequest>
+<GetCustomerDetailsResponse xmlns="http://bbnsdevelop.com.br">
+	<CustomerDetail>
+		<id>123</id>
+		<name>bob</name>
+		<phone>99999999</phone>
+		<email>bob@hotmail.com</email>
+	</CustomerDetail>
+</GetCustomerDetailsResponse>
