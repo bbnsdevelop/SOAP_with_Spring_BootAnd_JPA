@@ -11,6 +11,31 @@
 			</sequence>
 		</complexType>
 	</element>
+	
+	<element name="GetCustomerDetailsResponse">
+		<complexType>
+			<sequence>
+				<element name="CustomerDetail" type="tns:CustomerDetail"></element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="GetAllCustomerDetailsResponse">
+		<complexType>
+			<sequence>
+				<element name="CustomerDetail" type="tns:CustomerDetail"></element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<complexType name="CustomerDetail">
+			<sequence>
+				<element name="id" type="integer"></element>
+				<element name="name" type="string"></element>
+				<element name="phone" type="string"></element>
+				<element name="email" type="string"></element>
+			</sequence>
+	</complexType>
 
 
 </schema>
