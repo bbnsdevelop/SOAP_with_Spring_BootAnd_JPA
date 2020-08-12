@@ -12,6 +12,7 @@ import br.com.bbnsdevelop.webservices.customeradministration.customer.GetAllCust
 import br.com.bbnsdevelop.webservices.customeradministration.customer.GetCustomerDetailsResponse;
 import br.com.bbnsdevelop.webservices.customeradministration.customer.Status;
 import br.com.bbnsdevelop.webservices.customeradministration.dtos.Customer;
+import br.com.bbnsdevelop.webservices.customeradministration.exceptions.CustomerNotFoundException;
 
 @Component
 public class CustumerService {
@@ -34,9 +35,8 @@ public class CustumerService {
 			GetCustomerDetailsResponse response = new GetCustomerDetailsResponse();
 			response.setCustomerDetail(convertToCustomerDetail(customerOptional.get()));
 			return response;
-		} else {
-			return null;
 		}
+		throw new CustomerNotFoundException("Invalid customer id: " + id);
 
 	}
 
