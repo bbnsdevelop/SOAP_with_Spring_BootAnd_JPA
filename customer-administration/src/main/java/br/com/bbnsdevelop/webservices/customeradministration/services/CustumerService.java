@@ -1,6 +1,5 @@
 package br.com.bbnsdevelop.webservices.customeradministration.services;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -8,7 +7,10 @@ import java.util.Optional;
 import org.springframework.stereotype.Component;
 
 import br.com.bbnsdevelop.webservices.customeradministration.customer.CustomerDetail;
+import br.com.bbnsdevelop.webservices.customeradministration.customer.DeleteCustomerDetailsResponse;
+import br.com.bbnsdevelop.webservices.customeradministration.customer.GetAllCustomerDetailsResponse;
 import br.com.bbnsdevelop.webservices.customeradministration.customer.GetCustomerDetailsResponse;
+import br.com.bbnsdevelop.webservices.customeradministration.customer.Status;
 import br.com.bbnsdevelop.webservices.customeradministration.dtos.Customer;
 
 @Component
@@ -29,15 +31,8 @@ public class CustumerService {
 	public GetCustomerDetailsResponse findCustomerById(int id) {
 		Optional<Customer> customerOptional = this.customerList.stream().filter(c -> c.getId() == id).findAny();
 		if (customerOptional.isPresent()) {
-			Customer customer = customerOptional.get();
 			GetCustomerDetailsResponse response = new GetCustomerDetailsResponse();
-			CustomerDetail detail = new CustomerDetail();
-			detail.setId(customer.getId());
-			detail.setName(customer.getName());
-			detail.setPhone(customer.getPhone());
-			detail.setEmail(customer.getEmail());
-
-			response.setCustomerDetail(detail);
+			response.setCustomerDetail(convertToCustomerDetail(customerOptional.get()));
 			return response;
 		} else {
 			return null;
@@ -45,21 +40,36 @@ public class CustumerService {
 
 	}
 
-	public List<GetCustomerDetailsResponse> findAll() {
-		List<GetCustomerDetailsResponse> responseList = new ArrayList<>();
-
-		this.customerList.forEach(customer -> {
-			GetCustomerDetailsResponse response = new GetCustomerDetailsResponse();
-			CustomerDetail detail = new CustomerDetail();
-			detail.setId(customer.getId());
-			detail.setName(customer.getName());
-			detail.setPhone(customer.getPhone());
-			detail.setEmail(customer.getEmail());
-
-			response.setCustomerDetail(detail);
-			responseList.add(response);
+	public GetAllCustomerDetailsResponse findAll() {
+		GetAllCustomerDetailsResponse responseDetail = new GetAllCustomerDetailsResponse();
+		this.customerList.forEach(customer -> {		
+			responseDetail.getCustomerDetail().add(convertToCustomerDetail(customer));
 		});
-		return responseList;
+		return responseDetail;
+	}
+	
+	public DeleteCustomerDetailsResponse deleteById(int id) {
+		Status status = null;
+		Optional<Customer> customerOptional = this.customerList.stream().filter(c -> c.getId() == id).findAny();
+		if (customerOptional.isPresent()) {
+			//this.customerList.remove(customerOptional.get());
+			status = Status.SUCCESS;
+		}else {
+			status = Status.FAILURE;
+		}
+		DeleteCustomerDetailsResponse response = new DeleteCustomerDetailsResponse();
+		response.setStatus(status);
+		return response;
+		
+	}
+
+	private CustomerDetail convertToCustomerDetail(Customer customer) {
+		CustomerDetail detail = new CustomerDetail();
+		detail.setId(customer.getId());
+		detail.setName(customer.getName());
+		detail.setPhone(customer.getPhone());
+		detail.setEmail(customer.getEmail());
+		return detail;
 	}
 
 }
